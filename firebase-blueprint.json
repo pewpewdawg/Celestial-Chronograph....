@@ -1,0 +1,53 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User profile information.",
+      "type": "object",
+      "properties": {
+        "displayName": { "type": "string", "description": "The user's display name." },
+        "email": { "type": "string", "format": "email", "description": "The user's email address." },
+        "photoURL": { "type": "string", "format": "uri", "description": "The user's profile photo URL." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the profile was created." },
+        "theme": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "primary": { "type": "string" },
+            "container": { "type": "string" }
+          }
+        }
+      },
+      "required": ["displayName", "email"]
+    },
+    "Event": {
+      "title": "Calendar Event",
+      "description": "An event extracted from a schedule.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The ID of the user who owns this event." },
+        "title": { "type": "string", "description": "The title of the event." },
+        "date": { "type": "string", "description": "The date of the event (YYYY-MM-DD)." },
+        "startTime": { "type": "string", "description": "The start time of the event (HH:MM)." },
+        "endTime": { "type": "string", "description": "The end time of the event (HH:MM)." },
+        "location": { "type": "string", "description": "The location of the event." },
+        "description": { "type": "string", "description": "A description of the event." },
+        "reminderMinutes": { "type": "integer", "description": "Minutes before the event to trigger a reminder." },
+        "recurrence": { "type": "string", "enum": ["none", "daily", "weekly", "monthly"], "description": "The recurrence pattern of the event." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the event was created." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "When the event was last updated." }
+      },
+      "required": ["userId", "title", "date", "startTime", "endTime"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile documents."
+    },
+    "/events/{eventId}": {
+      "schema": "Event",
+      "description": "Extracted calendar events."
+    }
+  }
+}

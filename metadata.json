@@ -1,0 +1,5 @@
+{
+  "name": "Celestial Chronograph",
+  "description": "A premium AI-powered schedule extraction and calendar management app with a celestial aesthetic.",
+  "requestFramePermissions": ["camera"]
+}

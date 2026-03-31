@@ -1,0 +1,86 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+@theme {
+  --font-headline: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-surface: #111317;
+  --color-surface-container-low: #1a1c20;
+  --color-surface-container: #1e2024;
+  --color-surface-container-high: #282a2e;
+  --color-surface-container-highest: #333539;
+  --color-surface-bright: #37393e;
+  
+  --color-primary: #D8B4FE; /* Lavender */
+  --color-primary-container: #9333EA; /* Darker Purple */
+  --color-on-primary-container: #F5F3FF;
+  
+  --color-secondary: #F472B6; /* Pink */
+  --color-secondary-container: #BE185D; /* Darker Pink */
+  
+  --color-tertiary: #D9F99D; /* Light Olive Green (Lime-200) */
+  --color-tertiary-container: #4D7C0F; /* Darker Olive */
+  
+  --color-on-surface-variant: #c4c5d9;
+  --color-outline-variant: #434656;
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-white font-body;
+  }
+}
+
+.glass-panel {
+  background: rgba(51, 53, 57, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bubble-date {
+  @apply w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer;
+}
+
+.bubble-date-active {
+  @apply bg-primary text-surface font-bold shadow-[0_0_20px_rgba(184,195,255,0.5)] scale-110;
+}
+
+.bubble-date-inactive {
+  @apply bg-surface-container-high text-on-surface-variant hover:bg-surface-bright hover:text-white;
+}
+
+.celestial-bg {
+  background: radial-gradient(circle at 50% 50%, #1a1c20 0%, #111317 100%);
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: twinkle var(--duration, 3s) infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.celestial-glow {
+  box-shadow: 0 0 40px -10px var(--primary-container-color, rgba(46, 91, 255, 0.3));
+}
+
+.luminous-button {
+  background: linear-gradient(45deg, var(--primary-container-color, #2e5bff), var(--primary-color, #b8c3ff));
+}
